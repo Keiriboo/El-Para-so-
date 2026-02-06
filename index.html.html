@@ -1,0 +1,2709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>El Paraíso - Punto de Venta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           VARIABLES Y RESET
+           ============================================ */
+        :root {
+            /* Colores principales - Paleta Esmeralda */
+            --primary: #059669;
+            --primary-dark: #047857;
+            --primary-light: #d1fae5;
+            --primary-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            
+            /* Colores de acento */
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --gold: #fbbf24;
+            
+            /* Colores neutros */
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Bordes */
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+            
+            /* Transiciones */
+            --transition-fast: 150ms ease;
+            --transition: 300ms ease;
+            --transition-slow: 500ms ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           UTILIDADES
+           ============================================ */
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .slide-up {
+            animation: slideUp 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .header {
+            background: var(--primary-gradient);
+            padding: 12px 16px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            
+      
+            
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(1.3);
+            box-shadow: var(--shadow);
+        }
+
+        .brand-text {
+            margin-left: 70px;
+            margin-top: 10px;
+            color: var(--white);
+            width: 70px;
+            height: 36px;
+            transform: scale(3.8);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+
+        }
+
+        .brand-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.7rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-left: 40px;
+            margin-top: -10px;
+            
+        }
+
+        /* ============================================
+           CONTENEDOR PRINCIPAL
+           ============================================ */
+        .main-container {
+            padding-top: 80px;
+            padding-bottom: 100px;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           SECCIONES
+           ============================================ */
+        .section {
+            display: none;
+            padding: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* ============================================
+           BÚSQUEDA Y FILTROS
+           ============================================ */
+        .search-container {
+            background: var(--white);
+            padding: 16px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+       .search-input-wrapper {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el input y el botón */
+    position: relative; /* Necesario para posicionar el botón */
+}
+
+       .search-input {
+    width: 100%;
+    padding: 14px 18px;
+    padding-left: 45px;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-full) 0 0 var(--radius-full); /* Bordes redondeados a la izquierda */
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all var(--transition);
+    background: var(--gray-50);
+}
+
+       
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+            font-size: 1.1rem;
+        }
+
+        .search-btn {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            background: var(--primary-gradient);
+            color: var(--white);
+            
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        .search-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+          
+        }
+
+        .search-btn:active {
+            transform: scale(0.95);
+            transform: translateX(-200px);
+border-radius: 50px;
+}
+        }
+
+        /* Filtros */
+        .filters-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .sort-select {
+            padding: 10px 14px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 0.85rem;
+            background: var(--white);
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: all var(--transition);
+            width: 352px;
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Chips de categorías */
+        .categories-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+
+        .chip {
+            padding: 8px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-full);
+            background: var(--white);
+            color: var(--gray-600);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .chip.active {
+            background: var(--primary-gradient);
+            border-color: var(--primary);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        /* ============================================
+           GRID DE PRODUCTOS
+           ============================================ */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+
+        /* Tarjeta de producto */
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-card:active {
+            transform: scale(0.98);
+        }
+
+        .product-image-container {
+            position: relative;
+            padding-top: 100%;
+            background: var(--gray-100);
+            overflow: hidden;
+        }
+
+        .product-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-price::after {
+            content: ' CUP';
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Contador de cantidad */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: var(--radius);
+            background: var(--gray-100);
+            color: var(--gray-700);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .qty-btn:active {
+            transform: scale(0.9);
+        }
+
+        .qty-input {
+            width: 45px;
+            height: 32px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .qty-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* ============================================
+           DETALLE DE PRODUCTO
+           ============================================ */
+        .product-detail {
+            background: var(--white);
+            min-height: calc(100vh - 80px);
+        }
+
+        .detail-header {
+            position: relative;
+            background: var(--gray-100);
+        }
+
+        .detail-image-container {
+            position: relative;
+            padding-top: 80%;
+        }
+
+        .detail-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: var(--radius-full);
+            background: var(--white);
+            color: var(--gray-800);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .detail-content {
+            padding: 24px 20px;
+        }
+
+        .detail-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .detail-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .detail-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .detail-price::after {
+            content: ' CUP';
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .detail-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: var(--radius);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .detail-description {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 2px solid var(--gray-100);
+        }
+
+        .detail-qty-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .detail-qty-btn {
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            background: var(--white);
+            color: var(--gray-700);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .detail-qty-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .detail-qty-input {
+            width: 60px;
+            height: 44px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            text-align: center;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .add-to-cart-btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: var(--radius);
+            background: var(--primary-gradient);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .add-to-cart-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ============================================
+           BOTÓN FLOTANTE DEL CARRITO
+           ============================================ */
+        .fab-cart {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 64px;
+            height: 64px;
+            border: none;
+            border-radius: var(--radius-full);
+            background: var(--primary-gradient);
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-xl);
+            z-index: 90;
+        }
+
+        .fab-cart:hover {
+            transform: scale(1.1);
+        }
+
+        .fab-cart:active {
+            transform: scale(0.95);
+        }
+
+        .fab-cart.has-items {
+            animation: bounce 2s infinite;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            min-width: 26px;
+            height: 26px;
+            padding: 0 8px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+
+        /* ============================================
+           CARRITO (SLIDE-UP MODAL)
+           ============================================ */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 110;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition);
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            max-height: 85vh;
+            transform: translateY(100%);
+            transition: transform var(--transition-slow);
+            z-index: 120;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-panel.active {
+            transform: translateY(0);
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-close {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: var(--radius-full);
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .cart-close:hover {
+            background: var(--gray-200);
+            color: var(--gray-800);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            max-height: 50vh;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+        }
+
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            background: var(--gray-200);
+        }
+
+        .cart-item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cart-item-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .cart-item-price {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-qty-btn {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--white);
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .cart-qty-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .cart-qty-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .cart-item-subtotal {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .cart-item-remove {
+            padding: 6px 12px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .cart-item-remove:hover {
+            background: #dc2626;
+            color: var(--white);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray-500);
+        }
+
+        .cart-empty-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .cart-empty-text {
+            font-size: 1rem;
+        }
+
+        /* Barra de progreso */
+        .progress-section {
+            padding: 16px 20px;
+            background: var(--gray-50);
+            border-top: 2px solid var(--gray-100);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .progress-label {
+            color: var(--gray-600);
+        }
+
+        .progress-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .progress-value.complete {
+            color: var(--primary);
+        }
+
+        .progress-bar-container {
+            height: 10px;
+            background: var(--gray-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-full);
+            transition: width var(--transition-slow);
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-bar.complete {
+            background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+        }
+
+        .progress-message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .progress-message.success {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Footer del carrito */
+        .cart-footer {
+            padding: 20px;
+            border-top: 2px solid var(--gray-100);
+            background: var(--white);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .cart-total-label {
+            font-size: 1rem;
+            color: var(--gray-600);
+        }
+
+        .cart-total-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .cart-confirm-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: var(--radius);
+            background: var(--gray-300);
+            color: var(--gray-500);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: not-allowed;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cart-confirm-btn.enabled {
+            background: var(--primary-gradient);
+            color: var(--white);
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cart-confirm-btn.enabled:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ============================================
+           CHECKOUT / FORMULARIO
+           ============================================ */
+        .checkout-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .checkout-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .checkout-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .checkout-form {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .form-section {
+            margin-bottom: 24px;
+        }
+
+        .form-section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+        }
+
+        .form-label .required {
+            color: #dc2626;
+            margin-left: 2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all var(--transition);
+            background: var(--gray-50);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        textarea.form-input {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-hint {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        /* Resumen del pedido */
+        .order-summary {
+            background: var(--gray-50);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+        }
+
+        .summary-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 12px;
+        }
+
+        .summary-items {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 12px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: 2px solid var(--gray-200);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Botón de WhatsApp */
+        .whatsapp-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .whatsapp-btn:active {
+            transform: scale(0.98);
+        }
+
+        .whatsapp-btn:disabled {
+            background: var(--gray-300);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Botón volver */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           TOAST NOTIFICATIONS
+           ============================================ */
+        .toast-container {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            padding: 14px 24px;
+            border-radius: var(--radius);
+            background: var(--gray-800);
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-xl);
+            animation: toastIn 0.3s ease, toastOut 0.3s ease 2.7s forwards;
+            pointer-events: auto;
+        }
+
+        .toast.success {
+            background: var(--primary);
+        }
+
+        .toast.error {
+            background: #dc2626;
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        /* ============================================
+           SCROLLBAR CUSTOM
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-400);
+        }
+
+        /* ============================================
+           LOADING STATE
+           ============================================ */
+        .loading-skeleton {
+            background: linear-gradient(90deg, var(--gray-200) 25%, var(--gray-100) 50%, var(--gray-200) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: var(--radius);
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ============================================
+           RESPONSIVE ADJUSTMENTS
+           ============================================ */
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                width: 100%;
+                height: 46px;
+            }
+
+            .filters-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+        .categories-chips {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias filas */
+    /* Ajusta el ancho según tu diseño */
+}
+
+.chip {
+    flex: 25%; /* Crece para ocupar el 30% del ancho del contenedor */
+    margin: 5px; /* Espaciado entre botones */
+}
+
+            .detail-actions {
+                flex-direction: column;
+            }
+
+            .add-to-cart-btn {
+                width: 100%;
+            }
+        }
+        
+        .app-footer {
+    margin-top: 40px;
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+    border-top: 1px solid #eee;
+}
+
+.app-footer p {
+    margin: 6px 0;
+}
+
+.dev-link {
+    color: #25d366;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.dev-link:hover {
+    text-decoration: underline;
+}
+
+#flavor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.flavor-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+}
+
+.flavor-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.flavor-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+.whatsapp {
+   font-size: 20px;
+}
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HEADER
+         ============================================ -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <div> <img src="https://i.postimg.cc/4xh9tby8/950FA2EC-B637-4A3B-AAF4-799102E95B9D.png" class="logo" ></div>
+                <div>
+                    <div>
+                        <img class="brand-text" src="https://i.postimg.cc/rpPNcFDf/CD0220C5-E9C7-4339-B473-545DBE5B3573.png">
+                    </div>
+                    <div class="brand-subtitle">Punto de Venta</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+         CONTENEDOR PRINCIPAL
+         ============================================ -->
+    <main class="main-container">
+        <!-- ============================================
+             SECCIÓN: TIENDA (PRODUCTOS)
+             ============================================ -->
+        <section id="section-store" class="section active">
+            <!-- Búsqueda y Filtros -->
+            <div class="search-container">
+                <div class="search-box">
+<div class="search-input-wrapper">
+    <input type="text" id="search-input" class="search-input" placeholder="Buscar productos...">
+    <button class="search-btn" onclick="app.searchProducts()">🔍</button>
+</div>
+                
+                <div class="filters-row">
+                    <select id="sort-select" class="sort-select" onchange="app.sortProducts()">
+                        <option value="">Ordenar por...</option>
+                        <option value="price-asc">Precio: Menor a Mayor</option>
+                        <option value="price-desc">Precio: Mayor a Menor</option>
+                        <option value="name-asc">Nombre: A-Z</option>
+                    </select>
+                    
+                    <div class="categories-chips">
+                        <button class="chip active" data-category="all" onclick="app.filterCategory('all')">Todos</button>
+                        <button class="chip" data-category="alimentos" onclick="app.filterCategory('alimentos')">Alimentos</button>
+                        <button class="chip" data-category="electronicos" onclick="app.filterCategory('electronicos')">Electrónicos</button>
+                       
+                        <button class="chip" data-category="hogar" onclick="app.filterCategory('hogar')">Útiles del Hogar</button>
+                        <button class="chip" data-category="aseo" onclick="app.filterCategory('aseo')">Aseo Personal</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Productos -->
+            <div id="products-grid" class="products-grid">
+                <!-- Los productos se renderizan dinámicamente -->
+            </div>
+            
+        </section>
+<footer class="app-footer">
+    <p>© 2026 El Paraíso. Todos los derechos reservados.</p>
+    <p>
+        Desarrollador:
+        <a href="https://wa.me/5351500033" target="_blank" class="dev-link">
+            @keiriboo official
+        </a>
+    </p>
+</footer>
+        <!-- ============================================
+             SECCIÓN: DETALLE DE PRODUCTO
+             ============================================ -->
+        <section id="section-detail" class="section">
+            <div class="product-detail">
+                <div class="detail-header">
+                    <div class="detail-image-container">
+                        <img id="detail-image" class="detail-image" src="" alt="">
+                        <button class="back-btn" onclick="app.goBack()"><i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="detail-content">
+                    <span id="detail-category" class="detail-category"></span>
+                    <h1 id="detail-name" class="detail-name"></h1>
+                    <div id="detail-price" class="detail-price"></div>
+                    
+                    <div class="detail-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Peso</span>
+                            <span id="detail-weight" class="meta-value"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Disponibilidad</span>
+                            <span class="meta-value">✅ En stock</span>
+                        </div>
+                    </div>
+                    
+                    <p id="detail-description" class="detail-description"></p>
+                    
+                    <div class="detail-actions">
+                        <div class="detail-qty-control">
+                            <button class="detail-qty-btn" onclick="app.changeDetailQty(-1)">−</button>
+                            <input type="number" id="detail-qty" class="detail-qty-input" value="1" min="1" max="99" readonly>
+                            <button class="detail-qty-btn" onclick="app.changeDetailQty(1)">+</button>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="app.addToCartFromDetail()">
+                            <span>
+                           
+                           <i class="fa-solid fa-cart-plus"></i>
+                            </span>
+                            <span>Añadir al carrito</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             SECCIÓN: CHECKOUT
+             ============================================ -->
+        <section id="section-checkout" class="section">
+            <div class="checkout-container">
+                <a class="back-link" onclick="app.showSection('store')">
+                    <span><i class="fa-solid fa-arrow-left"></i></span>
+                    <span>Volver a la tienda</span>
+                </a>
+                
+                <div class="checkout-header">
+                    <h1 class="checkout-title">Finalizar Pedido</h1>
+                    <p class="checkout-subtitle">Completa tus datos para enviar el pedido por WhatsApp</p>
+                </div>
+
+                <div class="checkout-form">
+                    <!-- Resumen del pedido -->
+                    <div class="order-summary">
+                        <div class="summary-title">
+                            <span>
+                                <i class="fa-solid fa-clipboard-list"></i>
+                            </span>
+                            Resumen del Pedido</div>
+                        <div id="summary-items" class="summary-items"></div>
+                        <div class="summary-total">
+                            <span>Total:</span>
+                            <span id="summary-total">0 CUP</span>
+                        </div>
+                    </div>
+
+                    <!-- Datos del cliente -->
+                    <div class="form-section">
+                        <div class="form-section-title"><span>
+                            
+<i class="fa-solid fa-user-large"></i>
+                        </span>
+                             Datos Personales (Obligatorios)</div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Nombre <span class="required">*</span></label>
+                                <input type="text" id="customer-name" class="form-input" placeholder="Tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Apellidos <span class="required">*</span></label>
+                                <input type="text" id="customer-lastname" class="form-input" placeholder="Tus apellidos">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Teléfono <span class="required">*</span></label>
+                                <input type="tel" id="customer-phone" class="form-input" placeholder="5XXXXXXXX">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Carnet de Identidad <span class="required">*</span></label>
+                                <input type="text" id="customer-ci" class="form-input" placeholder="Tu número de CI">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Dirección Completa <span class="required">*</span></label>
+                            <input type="text" id="customer-address" class="form-input" placeholder="Calle, número, entre calles, reparto">
+                        </div>
+                    </div>
+
+                    <!-- Datos opcionales -->
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <span>
+
+
+<i class="fa-solid fa-receipt"></i>
+
+                            </span> Información Adicional (Opcional)</div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Teléfono Secundario</label>
+                            <input type="tel" id="customer-phone2" class="form-input" placeholder="Otro número de contacto">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Referencias de la Casa</label>
+                            <textarea id="customer-references" class="form-input" placeholder="Color de la casa, puntos de referencia cercanos, etc."></textarea>
+                            <p class="form-hint">Esta información nos ayudará a ubicar tu dirección más fácilmente.</p>
+                        </div>
+                    </div>
+
+                    <!-- Botón de envío -->
+                    <button id="send-order-btn" class="whatsapp-btn" onclick="app.sendOrder()">
+                        <span>
+                            <i class="fa-brands fa-whatsapp whatsapp"></i>
+                        </span>
+                        <span>Enviar Pedido por WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <div id="flavor-modal" class="modal hidden">
+    <div class="modal-box">
+        <h3>Elige los sabores</h3>
+        <p id="flavor-info"></p>
+        
+        <div id="flavor-grid"></div>
+        
+        <button id="confirm-flavors" disabled>
+            Confirmar selección
+        </button>
+    </div>
+</div>
+    </main>
+
+    <!-- ============================================
+         BOTÓN FLOTANTE DEL CARRITO
+         ============================================ -->
+    <button id="fab-cart" class="fab-cart" onclick="app.openCart()">
+        <span><i class="fa-solid fa-cart-shopping"></i></span>
+        <span id="cart-badge" class="cart-badge hidden">0</span>
+    </button>
+
+    <!-- ============================================
+         PANEL DEL CARRITO (MODAL)
+         ============================================ -->
+    <div id="cart-overlay" class="cart-overlay" onclick="app.closeCart()"></div>
+    
+    <div id="cart-panel" class="cart-panel">
+        <div class="cart-header">
+            <div class="cart-title">
+                <span><i class="fa-solid fa-cart-shopping"></i></span>
+                <span>Tu Carrito</span>
+            </div>
+            <button class="cart-close" onclick="app.closeCart()">
+
+                <i class="fa-solid fa-x"></i>
+
+
+            </button>
+        </div>
+        
+        <div id="cart-items" class="cart-items">
+            <!-- Items del carrito se renderizan dinámicamente -->
+        </div>
+
+        <!-- Barra de progreso -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <span class="progress-label">Pedido mínimo: 5,000 CUP</span>
+                <span id="progress-value" class="progress-value">0 / 5,000 CUP</span>
+            </div>
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <p id="progress-message" class="progress-message">Agrega más productos para completar tu pedido</p>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span class="cart-total-label">Total:</span>
+                <span id="cart-total" class="cart-total-value">0 CUP</span>
+            </div>
+            <button id="cart-confirm-btn" class="cart-confirm-btn" onclick="app.confirmCart()">
+                <span>✓</span>
+                <span>Confirmar Pedido</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================================
+         CONTENEDOR DE TOASTS
+         ============================================ -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+    
+        /**
+         * ============================================
+         * EL PARAÍSO - PUNTO DE VENTA
+         * Aplicación SPA para ventas a domicilio
+         * ============================================
+         */
+
+        // ============================================
+        // DATOS DE PRODUCTOS
+        // ============================================
+        const PRODUCTS_DATA = [
+    // ALIMENTOS
+    {
+        id: 1,
+        name: "Leche Condensada La Granjera",
+        price: 460,
+        category: "alimentos",
+        weight: "390 g",
+        image: "https://i.postimg.cc/7ZFmhDqv/AC8444F8-F6EF-4F5A-BF81-FD26FBFFCD67.png",
+        description: "Leche condensada dulce y cremosa, ideal para postres, dulces caseros, cafés y batidos."
+    },
+    {
+        id: 2,
+        name: "Pasta Dental Balma",
+        price: 470,
+        category: "alimentos",
+        weight: "12 g",
+        image: "https://i.postimg.cc/hPFj25D6/D01BEC9B-FC0E-4386-9929-3F1CFCD1BE5E.png",
+        description: "Pasta dental de uso diario que ayuda a mantener los dientes limpios y el aliento fresco."
+    },
+    {
+        id: 3,
+        name: "Refresco Marwa",
+        price: 35,
+        category: "alimentos",
+        weight: "2 L",
+        image: "https://i.postimg.cc/2SGS8j49/F67EA18D-50B4-452D-B0FC-C6403C64DE12.png",
+        description: "Polvo de Refresco  con variedad de sabores, refrescante ideal para compartir o acompañar comidas."
+    },
+    {
+        id: 4,
+        name: "Pasta de Tomate Rayan",
+        price: 380,
+        category: "alimentos",
+        weight: "400 g",
+        image: "https://i.postimg.cc/7LQP0Bt2/BC83348B-5EDC-4043-9DA2-D87D457EAB95.png",
+        description: "Pasta de tomate concentrada, perfecta para salsas, guisos y recetas caseras."
+    },
+    {
+        id: 5,
+        name: "Galletas Marie",
+        price: 270,
+        category: "alimentos",
+        weight: "135 g",
+        image: "https://i.postimg.cc/zfPDKd2F/DBA43A54-5328-4437-8963-33A77E899B79.png",
+        description: "Galletas dulces y crujientes, ideales para el desayuno o la merienda."
+    },
+    {
+        id: 6,
+        name: "Galletas Golozetas",
+        price: 90,
+        category: "alimentos",
+        weight: "34.8 g",
+        image: "https://i.postimg.cc/sgmysMsP/24A5C7D2-EE45-496B-A480-75EDA038EB9D.png",
+        description: "Galletas dulces en formato individual, perfectas para niños y meriendas rápidas."
+    },
+    {
+        id: 7,
+        name: "Galletas Yummy",
+        price: 150,
+        category: "alimentos",
+        weight: "35 g",
+        image: "https://i.postimg.cc/dtjvsFXp/8D1E847E-8800-4325-A666-1607D351AF71.png",
+        description: "Galletas dulces con sabor agradable, ideales para consumir en cualquier momento del día."
+    },
+    {
+        id: 8,
+        name: "Mantequilla Adorina",
+        price: 400,
+        category: "alimentos",
+        weight: "250 g",
+        image: "https://i.postimg.cc/xj7Pdn0W/A0D38DB1-0FE0-4738-9F80-3AB32B80228E.png",
+        description: "Mantequilla ideal para cocinar, hornear o untar, con sabor suave y textura cremosa."
+    },
+    {
+        id: 9,
+        name: "Pqt Coditos Lucy",
+        price: 350,
+        category: "alimentos",
+        weight: "500 g",
+        image: "https://i.postimg.cc/x1fGcZD6/IMG-0929.jpg",
+        description: "Pasta tipo coditos, perfecta para sopas, ensaladas y platos tradicionales."
+    },
+    {
+        id: 10,
+        name: "Espaguetis Rayan",
+        price: 300,
+        category: "alimentos",
+        weight: "500 g",
+        image: "https://i.postimg.cc/7L3KkTvJ/4C66245A-AE95-44C8-B722-1FDB77AFE6C5.png",
+        description: "Espaguetis de trigo, ideales para preparar platos de pasta con salsas variadas."
+    },
+    {
+        id: 11,
+        name: "Cafe Conga",
+        price: 750,
+        category: "alimentos",
+        weight: "230 g",
+        image: "https://i.postimg.cc/L5TYLtcx/85B3F951-B6A6-4A90-A077-7151F997D39F.png",
+        description: "Café molido de aroma intenso y sabor fuerte, ideal para comenzar el día."
+    },
+    
+    // ASEO
+    {
+        id: 12,
+        name: "Jabon de Carbon Marwa",
+        price: 160,
+        category: "aseo",
+        weight: "100 g",
+        image: "https://i.postimg.cc/Jz6XvNzM/9D61C87C-2887-4ECF-B904-434A3062DC91.png",
+        description: "Jabón corporal con carbón activado que ayuda a limpiar profundamente la piel."
+    },
+    {
+        id: 13,
+        name: "Jabon de baño",
+        price: 140,
+        category: "aseo",
+        weight: "100 g",
+        image: "https://i.postimg.cc/HnqR9gmK/7A029648-C920-4FCB-8AF1-8C81F5E25948.png",
+        description: "Jabón de baño para uso diario, deja la piel limpia y con agradable aroma."
+    },
+    {
+        id: 14,
+        name: "Jabon de Lavar",
+        price: 260,
+        category: "aseo",
+        weight: "160 g",
+        image: "https://i.postimg.cc/x8WQXTQB/1B89C3D6-7618-4151-B1DD-9E28CAA86FC8.png",
+        description: "Jabón para lavar ropa, eficaz para eliminar suciedad y manchas."
+    },
+    
+    // DULCES
+    {
+        id: 15,
+        name: "Copa de Chocolate",
+        price: 50,
+        category: "alimentos",
+        weight: "7 g",
+        image: "https://i.postimg.cc/qvQ7vb4w/8A5BDD3E-FB2D-41ED-B775-492505EF1BF2.png",
+        description: "Dulce de chocolate en presentación individual, ideal para un antojo rápido."
+    },
+    {
+        id: 16,
+        name: "Gelatina de Frutas",
+        price: 120,
+        category: "alimentos",
+        weight: "100 g",
+        image: "https://i.postimg.cc/nhj5wMMf/7DEB664E-189E-4DDD-BFE5-1A869F754851.png",
+        description: "Gelatina sabor frutas, refrescante y perfecta como postre."
+    },
+    {
+        id: 17,
+        name: "Gummy Balls Carita",
+        price: 60,
+        category: "alimentos",
+        weight: "10 g",
+        image: "https://i.postimg.cc/k55yhpTF/6FD693A2-9638-43E1-B17F-3580B9334273.png",
+        description: "Gomitas dulces con forma de carita, divertidas y sabrosas."
+    },
+    {
+        id: 18,
+        name: "Gummy Balls Fútbol",
+        price: 60,
+        category: "alimentos",
+        weight: "10 g",
+        image: "https://i.postimg.cc/mkMx1D9v/018D5365-CF78-4B41-A958-A66EA976C173.png",
+        description: "Gomitas con diseño de balón de fútbol, ideales para niños."
+    },
+    {
+        id: 19,
+        name: "Gummy Balls Frutas",
+        price: 60,
+        category: "alimentos",
+        weight: "10 g",
+        image: "https://i.postimg.cc/d3RHKTrj/A4C64A44-DE09-4440-8D0A-19DADC24F126.png",
+        description: "Gomitas surtidas con sabores frutales, dulces y coloridas."
+    },
+    {
+        id: 20,
+        name: "Chupa Chupa",
+        price: 60,
+        category: "alimentos",
+        weight: "10 g",
+        image: "https://i.postimg.cc/PxWnVJ34/37881F33-CCBC-411E-9E63-83CC9714CFD0.png",
+        hasFlavors: true,
+        flavors: [
+            { name: "Fresa", image: "img/fresa.png" },
+            { name: "Cola", image: "img/cola.png" },
+            { name: "Naranja", image: "img/naranja.png" },
+            { name: "Piña", image: "img/pina.png" }
+        ],
+        description: "Chupachupa dulce disponible en varios sabores frutales."
+    },
+    {
+        id: 21,
+        name: "Bombóm Caramelo",
+        price: 60,
+        category: "alimentos",
+        weight: "10 g",
+        image: "https://i.postimg.cc/13qCrTYX/835F93D8-B581-4D1F-82B4-8CBA30B165F9.png",
+        description: "Caramelo dulce en presentación individual, ideal para niños."
+    },
+    
+    // VARIOS
+    {
+        id: 22,
+        name: "Carton de Huevos",
+        price: 3200,
+        category: "alimentos",
+        weight: "30 unidades",
+        image: "https://i.postimg.cc/sXbfhJ98/5B46840B-FD53-461D-A954-0E924AA53734.png",
+        description: "Cartón con 30 huevos frescos, ideal para el consumo familiar."
+    },
+    {
+        id: 23,
+        name: "Mortadella",
+        price: 650,
+        category: "alimentos",
+        weight: "500 g",
+        image: "https://i.postimg.cc/g00wWFFv/499856EF-23E3-4BA3-8590-A0D861C45958.png",
+        description: "Mortadela ideal para bocaditos, desayunos y comidas rápidas."
+    },
+    {
+        id: 24,
+        name: "Aceite Saude",
+        price: 1150,
+        category: "alimentos",
+        weight: "900 ml",
+        image: "https://i.postimg.cc/Hn8sLd3P/E7117A0D-0D72-4FD3-8712-D6618B2D4872.png",
+        description: "Aceite vegetal para cocinar, ideal para freír y preparar alimentos."
+    },
+    {
+        id: 25,
+        name: "Azucar Granulada Fresko",
+        price: 680,
+        category: "alimentos",
+        weight: "1 kg",
+        image: "https://i.postimg.cc/zXRVzScG/583DFDAA-F508-47A0-8908-46BCAA268C9A.png",
+        description: "Azúcar blanca granulada para endulzar bebidas y postres."
+    },
+    {
+        id: 26,
+        name: "Papel higiénico Futuro",
+        price: 600,
+        category: "aseo",
+        weight: "15 m",
+        image: "https://i.postimg.cc/4dqsqjZ0/33290888-6465-46FB-A2F4-A869F0109170.png",
+        description: "Papel higiénico suave y resistente para uso diario."
+    },
+            
+            
+            
+            { id: 27, name: "Pqt Pollo ", price: 4400, category: "alimentos", weight: "10 lb", image: "https://i.postimg.cc/VvMqyQQy/IMG-0933.webp", description: "Paquete de pollo fresco y congelado, ideal para el consumo familiar. Perfecto para preparar comidas variadas como guisos, frituras y asados, con buen rendimiento y sabor." },
+            { id: 28, name: "Harina de Pan (Agranel)", price: 230, category: "alimentos", weight: "x libra", image: "https://i.postimg.cc/yY0mvZzX/IMG-0935.jpg", description: "Harina fina y versátil, ideal para la elaboración de panes, empanizados y masas caseras." },
+         //   { id: 29, name: "Azúcar (Agranel)", price: , category: "alimentos", weight: "x libra", image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400", description: "Cargador universal con múltiples conectores. Carga rápida y protección contra sobrecarga." },
+        //    { id: 15, name: "Linterna LED", price: 650, category: "electronicos", weight: "300 g", image: "https://images.unsplash.com/photo-1564466021188-1e17010c541c?w=400", description: "Linterna LED de alta potencia, resistente al agua. Ideal para emergencias y actividades al aire libre." },
+        //    { id: 16, name: "Extensión Eléctrica 3m", price: 780, category: "electronicos", weight: "500 g", image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", description: "Extensión eléctrica de 3 metros con 4 tomas. Cable resistente y enchufe con tierra." },
+        //    { id: 17, name: "Bombilla LED 9W", price: 180, category: "electronicos", weight: "50 g", image: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=400", description: "Bombilla LED de bajo consumo, 9W equivalente a 60W. Luz blanca brillante y duradera." },
+        //    { id: 18, name: "Reloj Despertador Digital", price: 1200, category: "electronicos", weight: "250 g", image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400", description: "Reloj despertador digital con pantalla LED grande. Alarma configurable y función snooze." },
+            
+            // ÚTILES DEL HOGAR
+         //   { id: 19, name: "Detergente Líquido 1L", price: 420, category: "hogar", weight: "1 kg", image: "https://images.unsplash.com/photo-1583947581924-860bda6a26df?w=400", description: "Detergente líquido concentrado para ropa. Limpieza profunda y cuidado de las fibras." },
+        //    { id: 20, name: "Jabón de Lavar 400g", price: 165, category: "hogar", weight: "400 g", image: "https://images.unsplash.com/photo-1607006412367-c1fbd7c6069d?w=400", description: "Jabón de lavar multiusos, efectivo contra manchas difíciles. Aroma fresco y duradero." },
+        //    { id: 21, name: "Suavizante de Ropa 1L", price: 380, category: "hogar", weight: "1 kg", image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400", description: "Suavizante de ropa con fragancia floral. Deja tu ropa suave y con aroma agradable." },
+        //    { id: 22, name: "Limpiador Multiusos 750ml", price: 290, category: "hogar", weight: "750 g", image: "https://images.unsplash.com/photo-1583947581924-860bda6a26df?w=400", description: "Limpiador multiusos para superficies. Desinfecta y deja un brillo impecable." },
+        //    { id: 23, name: "Esponja de Cocina (Pack 3)", price: 145, category: "hogar", weight: "150 g", image: "https://images.unsplash.com/photo-1629196914168-3a9644338dc5?w=400", description: "Esponjas de cocina resistentes. Pack de 3 unidades para diferentes usos." },
+         //   { id: 24, name: "Bolsa de Basura (Pack 20)", price: 220, category: "hogar", weight: "400 g", image: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?w=400", description: "Bolsas de basura resistentes, pack de 20 unidades. Capacidad de 50 litros cada una." },
+         //   { id: 25, name: "Papel Higiénico (Pack 4)", price: 320, category: "hogar", weight: "600 g", image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400", description: "Papel higiénico de doble hoja, suave y resistente. Pack de 4 rollos." },
+         //   { id: 26, name: "Servilletas de Papel (Pack 100)", price: 180, category: "hogar", weight: "300 g", image: "https://images.unsplash.com/photo-1583947581924-860bda6a26df?w=400", description: "Servilletas de papel blancas, pack de 100 unidades. Suaves y absorbentes." },
+        //    { id: 27, name: "Fósforos de Seguridad (Pack 5)", price: 95, category: "hogar", weight: "100 g", image: "https://images.unsplash.com/photo-1605643069661-d2812f435e46?w=400", description: "Fósforos de seguridad, pack de 5 cajas. Encendido fácil y seguro." },
+        //    { id: 28, name: "Vela Blanca Grande", price: 135, category: "hogar", weight: "200 g", image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400", description: "Vela blanca grande, larga duración. Ideal para emergencias o decoración." },
+            
+            // ASEO PERSONAL
+        //    { id: 29, name: "Jabón de Baño 150g", price: 125, category: "aseo", weight: "150 g", image: "https://images.unsplash.com/photo-1607006412367-c1fbd7c6069d?w=400", description: "Jabón de baño con aroma floral. Limpieza suave y fragancia duradera." },
+        //    { id: 30, name: "Shampoo 400ml", price: 520, category: "aseo", weight: "400 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Shampoo nutritivo para todo tipo de cabello. Limpieza profunda y brillo natural." },
+        //    { id: 31, name: "Acondicionador 400ml", price: 480, category: "aseo", weight: "400 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Acondicionador hidratante, desenreda y suaviza el cabello. Fragancia agradable." },
+        //    { id: 32, name: "Pasta Dental 100g", price: 195, category: "aseo", weight: "100 g", image: "https://images.unsplash.com/photo-1559671088-795c793c5eb2?w=400", description: "Pasta dental con flúor, protección completa. Limpieza profunda y aliento fresco." },
+        //    { id: 33, name: "Cepillo de Dientes", price: 145, category: "aseo", weight: "30 g", image: "https://images.unsplash.com/photo-1609592424308-64674c063661?w=400", description: "Cepillo de dientes de cerdas suaves. Mango ergonómico para mejor agarre." },
+         //   { id: 34, name: "Desodorante Roll-on 50ml", price: 320, category: "aseo", weight: "50 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Desodorante roll-on, protección 24 horas. Sin alcohol y suave con la piel." },
+         //   { id: 35, name: "Crema Dental para Niños", price: 165, category: "aseo", weight: "50 g", image: "https://images.unsplash.com/photo-1559671088-795c793c5eb2?w=400", description: "Pasta dental infantil con sabor a frutas. Fórmula suave para dientes de leche." },
+         //   { id: 36, name: "Talco en Polvo 200g", price: 245, category: "aseo", weight: "200 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Talco en polvo con aroma a bebé. Absorbente y refrescante para la piel." },
+        //    { id: 37, name: "Algodón en Bolas (Pack 100)", price: 185, category: "aseo", weight: "150 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Algodón puro en bolas, pack de 100 unidades. Suave y absorbente." },
+        //    { id: 38, name: "Hisopos (Pack 200)", price: 165, category: "aseo", weight: "100 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Hisopos de algodón, pack de 200 unidades. Cabezas suaves y seguras." },
+         //   { id: 39, name: "Gel de Afeitar 200ml", price: 385, category: "aseo", weight: "200 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Gel de afeitar con aloe vera. Espuma rica y cremosa para un afeitado suave." },
+         //   { id: 40, name: "Champú para Bebé 200ml", price: 420, category: "aseo", weight: "200 g", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400", description: "Champú suave para bebé, sin lágrimas. Fórmula hipoalergénica y delicada." }
+        ];
+
+        // ============================================
+        // CLASE PRINCIPAL DE LA APLICACIÓN
+        // ============================================
+        
+        
+        class ElParaisoApp {
+            openFlavorSelector(product, requiredQty) {
+    this.selectedProduct = product;
+    this.requiredQty = requiredQty;
+    this.flavorSelection = {};
+    
+    const grid = document.getElementById("flavor-grid");
+    grid.innerHTML = "";
+    
+    product.flavors.forEach(flavor => {
+        this.flavorSelection[flavor.name] = 0;
+        
+        grid.innerHTML += `
+      <div class="flavor-card">
+        <img src="${flavor.image}">
+        <p>${flavor.name}</p>
+        <button onclick="app.changeFlavor('${flavor.name}', -1)">−</button>
+        <span id="f-${flavor.name}">0</span>
+        <button onclick="app.changeFlavor('${flavor.name}', 1)">+</button>
+      </div>
+    `;
+    });
+    
+    // 🔥 ESTO ES LO QUE TE FALTABA
+    document.getElementById("flavor-modal").classList.remove("hidden");
+}
+changeFlavor(name, delta) {
+    const currentTotal = Object.values(this.flavorSelection)
+        .reduce((a, b) => a + b, 0);
+    
+    if (delta > 0 && currentTotal >= this.requiredQty) return;
+    
+    this.flavorSelection[name] = Math.max(
+        0,
+        this.flavorSelection[name] + delta
+    );
+    
+    document.getElementById(`flavor-${name}`).textContent =
+        this.flavorSelection[name];
+    
+    const newTotal = Object.values(this.flavorSelection)
+        .reduce((a, b) => a + b, 0);
+    
+    document.getElementById('confirm-flavors').disabled =
+        newTotal !== this.requiredQty;
+}
+confirmFlavors() {
+    const flavorsText = Object.entries(this.flavorSelection)
+        .filter(([_, qty]) => qty > 0)
+        .map(([name, qty]) => `${name} x${qty}`)
+        .join(', ');
+    
+    this.addToCart({
+        ...this.selectedProduct,
+        flavorDetail: flavorsText
+    });
+    
+    document.getElementById('flavor-modal').classList.add('hidden');
+}
+            
+            constructor() {
+                // Estado de la aplicación
+                this.state = {
+                    products: [...PRODUCTS_DATA],
+                    filteredProducts: [...PRODUCTS_DATA],
+                    cart: {}, // { productId: quantity }
+                    currentCategory: 'all',
+                    currentSort: '',
+                    searchQuery: '',
+                    currentDetailProduct: null,
+                    detailQuantity: 1,
+                    previousSection: 'store'
+                };
+
+                // Constantes
+                this.MIN_ORDER_AMOUNT = 5000;
+                this.WHATSAPP_NUMBER = '5351500033';
+
+                // Inicializar
+                this.init();
+            }
+
+            init() {
+                this.renderProducts();
+                this.updateCartUI();
+                this.setupEventListeners();
+            }
+
+           
+
+            // ============================================
+            // NAVEGACIÓN ENTRE SECCIONES
+            // ============================================
+            showSection(sectionId) {
+                // Guardar sección anterior
+                const currentSection = document.querySelector('.section.active');
+                if (currentSection) {
+                    this.state.previousSection = currentSection.id.replace('section-', '');
+                }
+
+                // Ocultar todas las secciones
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Mostrar la sección solicitada
+                const targetSection = document.getElementById(`section-${sectionId}`);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+
+                // Si es checkout, actualizar resumen
+                if (sectionId === 'checkout') {
+                    this.renderOrderSummary();
+                }
+            }
+
+            goBack() {
+                this.showSection(this.state.previousSection);
+                this.state.currentDetailProduct = null;
+            }
+
+            // ============================================
+            // RENDERIZADO DE PRODUCTOS
+            // ============================================
+            renderProducts() {
+                const grid = document.getElementById('products-grid');
+                
+                if (this.state.filteredProducts.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray-500);">
+                            <div style="font-size: 3rem; margin-bottom: 16px;">🔍</div>
+                            <p>No se encontraron productos</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = this.state.filteredProducts.map(product => {
+                    const cartQty = this.state.cart[product.id] || 0;
+                    return `
+                        <div class="product-card" onclick="app.showProductDetail(${product.id})">
+                            <div class="product-image-container">
+                                <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
+                                ${product.price > 500 ? '<span class="product-badge">Recomendado</span>' : ''}
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">${product.name}</h3>
+                                <div class="product-price">${product.price}</div>
+                                <div class="quantity-control" onclick="event.stopPropagation()">
+                                    <button class="qty-btn" onclick="app.updateCartQuantity(${product.id}, -1)">−</button>
+                                    <input type="number" class="qty-input" value="${cartQty}" readonly>
+                                    <button class="qty-btn" onclick="app.updateCartQuantity(${product.id}, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // ============================================
+            // FILTROS Y BÚSQUEDA
+            // ============================================
+            filterCategory(category) {
+                this.state.currentCategory = category;
+                
+                // Actualizar chips visuales
+                document.querySelectorAll('.chip').forEach(chip => {
+                    chip.classList.toggle('active', chip.dataset.category === category);
+                });
+
+                this.applyFilters();
+            }
+
+            sortProducts() {
+                const select = document.getElementById('sort-select');
+                this.state.currentSort = select.value;
+                this.applyFilters();
+            }
+
+            searchProducts() {
+                const input = document.getElementById('search-input');
+                this.state.searchQuery = input.value.toLowerCase().trim();
+                this.applyFilters();
+            }
+
+            applyFilters() {
+                let products = [...this.state.products];
+
+                // Filtrar por categoría
+                if (this.state.currentCategory !== 'all') {
+                    products = products.filter(p => p.category === this.state.currentCategory);
+                }
+
+                // Filtrar por búsqueda
+                if (this.state.searchQuery) {
+                    products = products.filter(p => 
+                        p.name.toLowerCase().includes(this.state.searchQuery) ||
+                        p.description.toLowerCase().includes(this.state.searchQuery)
+                    );
+                }
+
+                // Ordenar
+                switch (this.state.currentSort) {
+                    case 'price-asc':
+                        products.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-desc':
+                        products.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'name-asc':
+                        products.sort((a, b) => a.name.localeCompare(b.name));
+                        break;
+                }
+
+                this.state.filteredProducts = products;
+                this.renderProducts();
+            }
+
+            // ============================================
+            // DETALLE DE PRODUCTO
+            // ============================================
+            showProductDetail(productId) {
+                const product = this.state.products.find(p => p.id === productId);
+                if (!product) return;
+
+                this.state.currentDetailProduct = product;
+                this.state.detailQuantity = this.state.cart[productId] || 1;
+
+                // Llenar datos del detalle
+                document.getElementById('detail-image').src = product.image;
+                document.getElementById('detail-category').textContent = this.getCategoryName(product.category);
+                document.getElementById('detail-name').textContent = product.name;
+                document.getElementById('detail-price').textContent = product.price;
+                document.getElementById('detail-weight').textContent = product.weight;
+                document.getElementById('detail-description').textContent = product.description;
+                document.getElementById('detail-qty').value = this.state.detailQuantity;
+
+                this.showSection('detail');
+            }
+
+            getCategoryName(category) {
+                const names = {
+                    'alimentos': 'Alimentos',
+                    'electronicos': 'Electrónicos',
+                    'hogar': 'Útiles del Hogar',
+                    'aseo': 'Aseo Personal'
+                };
+                return names[category] || category;
+            }
+
+            changeDetailQty(delta) {
+                const newQty = this.state.detailQuantity + delta;
+                if (newQty >= 1 && newQty <= 99) {
+                    this.state.detailQuantity = newQty;
+                    document.getElementById('detail-qty').value = newQty;
+                }
+            }
+
+            addToCartFromDetail() {
+                if (!this.state.currentDetailProduct) return;
+                
+                const productId = this.state.currentDetailProduct.id;
+                const qty = this.state.detailQuantity;
+                
+                this.state.cart[productId] = qty;
+                this.updateCartUI();
+                this.renderProducts();
+                this.showToast('Producto añadido al carrito', 'success');
+            }
+
+            // ============================================
+            // GESTIÓN DEL CARRITO
+            // ============================================
+            updateCartQuantity(productId, delta) {
+                const currentQty = this.state.cart[productId] || 0;
+                const newQty = currentQty + delta;
+
+                if (newQty > 0) {
+                    this.state.cart[productId] = newQty;
+                } else {
+                    delete this.state.cart[productId];
+                }
+
+                this.updateCartUI();
+                this.renderProducts();
+            }
+
+            removeFromCart(productId) {
+                delete this.state.cart[productId];
+                this.updateCartUI();
+                this.renderCartItems();
+                this.renderProducts();
+                this.showToast('Producto eliminado del carrito', 'success');
+            }
+
+            updateCartItemQuantity(productId, delta) {
+                const currentQty = this.state.cart[productId] || 0;
+                const newQty = currentQty + delta;
+
+                if (newQty > 0) {
+                    this.state.cart[productId] = newQty;
+                } else {
+                    delete this.state.cart[productId];
+                }
+
+                this.updateCartUI();
+                this.renderCartItems();
+                this.renderProducts();
+            }
+
+            getCartItems() {
+                return Object.entries(this.state.cart).map(([productId, quantity]) => {
+                    const product = this.state.products.find(p => p.id === parseInt(productId));
+                    return { ...product, quantity };
+                });
+            }
+
+            getCartTotal() {
+                return this.getCartItems().reduce((total, item) => {
+                    return total + (item.price * item.quantity);
+                }, 0);
+            }
+
+            getCartItemCount() {
+                return Object.values(this.state.cart).reduce((sum, qty) => sum + qty, 0);
+            }
+
+            updateCartUI() {
+                const itemCount = this.getCartItemCount();
+                const badge = document.getElementById('cart-badge');
+                const fab = document.getElementById('fab-cart');
+
+                if (itemCount > 0) {
+                    badge.textContent = itemCount;
+                    badge.classList.remove('hidden');
+                    fab.classList.add('has-items');
+                } else {
+                    badge.classList.add('hidden');
+                    fab.classList.remove('has-items');
+                }
+            }
+
+            // ============================================
+            // PANEL DEL CARRITO
+            // ============================================
+            openCart() {
+                this.renderCartItems();
+                this.updateProgressBar();
+                
+                document.getElementById('cart-overlay').classList.add('active');
+                document.getElementById('cart-panel').classList.add('active');
+            }
+
+            closeCart() {
+                document.getElementById('cart-overlay').classList.remove('active');
+                document.getElementById('cart-panel').classList.remove('active');
+            }
+
+            renderCartItems() {
+                const container = document.getElementById('cart-items');
+                const items = this.getCartItems();
+
+                if (items.length === 0) {
+                    container.innerHTML = `
+                        <div class="cart-empty">
+                            <div class="cart-empty-icon"><i class="fa-solid fa-store"></i></div>
+                            <p class="cart-empty-text">Tu carrito está vacío</p>
+                            <p style="font-size: 0.85rem; margin-top: 8px;">Agrega productos para comenzar tu pedido</p>
+                        </div>
+                    `;
+                    document.getElementById('cart-total').textContent = '0 CUP';
+                    return;
+                }
+
+                container.innerHTML = items.map(item => `
+                    <div class="cart-item">
+                        <img class="cart-item-image" src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price} CUP c/u</div>
+                            <div class="cart-item-actions">
+                                <div class="cart-item-qty">
+                                    <button class="cart-qty-btn" onclick="app.updateCartItemQuantity(${item.id}, -1)">−</button>
+                                    <span class="cart-qty-value">${item.quantity}</span>
+                                    <button class="cart-qty-btn" onclick="app.updateCartItemQuantity(${item.id}, 1)">+</button>
+                                </div>
+                                <span class="cart-item-subtotal">${(item.price * item.quantity).toLocaleString()} CUP</span>
+                                <button class="cart-item-remove" onclick="app.removeFromCart(${item.id})">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Actualizar total
+                const total = this.getCartTotal();
+                document.getElementById('cart-total').textContent = `${total.toLocaleString()} CUP`;
+            }
+
+            updateProgressBar() {
+                const total = this.getCartTotal();
+                const percentage = Math.min((total / this.MIN_ORDER_AMOUNT) * 100, 100);
+                const progressBar = document.getElementById('progress-bar');
+                const progressValue = document.getElementById('progress-value');
+                const progressMessage = document.getElementById('progress-message');
+                const confirmBtn = document.getElementById('cart-confirm-btn');
+
+                progressBar.style.width = `${percentage}%`;
+                progressValue.textContent = `${total.toLocaleString()} / ${this.MIN_ORDER_AMOUNT.toLocaleString()} CUP`;
+
+                if (total >= this.MIN_ORDER_AMOUNT) {
+                    progressBar.classList.add('complete');
+                    progressValue.classList.add('complete');
+                    progressMessage.textContent = '✓ ¡Has alcanzado el pedido mínimo!';
+                    progressMessage.classList.add('success');
+                    confirmBtn.classList.add('enabled');
+                    confirmBtn.disabled = false;
+                } else {
+                    progressBar.classList.remove('complete');
+                    progressValue.classList.remove('complete');
+                    const remaining = this.MIN_ORDER_AMOUNT - total;
+                    progressMessage.textContent = `Te faltan ${remaining.toLocaleString()} CUP para completar tu pedido`;
+                    progressMessage.classList.remove('success');
+                    confirmBtn.classList.remove('enabled');
+                    confirmBtn.disabled = true;
+                }
+            }
+            
+            sendOrder() {
+    // 📞 Número de WhatsApp (CAMBIA ESTE)
+    const phone = "5355167206"; // Ejemplo Cuba +53
+    
+    // 🧍 Datos del cliente
+    const name = document.getElementById("customer-name").value.trim();
+    const lastname = document.getElementById("customer-lastname").value.trim();
+    const phone1 = document.getElementById("customer-phone").value.trim();
+    const ci = document.getElementById("customer-ci").value.trim();
+    const address = document.getElementById("customer-address").value.trim();
+    const phone2 = document.getElementById("customer-phone2").value.trim();
+    const references = document.getElementById("customer-references").value.trim();
+    
+    // 🚨 Validación básica
+    if (!name || !lastname || !phone1 || !ci || !address) {
+        alert("⚠️ Completa todos los datos obligatorios");
+        return;
+    }
+    
+    // 🛒 Validar carrito
+    if (!this.cart || this.cart.length === 0) {
+        alert("⚠️ El carrito está vacío");
+        return;
+    }
+    
+    // 📦 Construir productos
+    let productsText = "";
+    let total = 0;
+    
+    this.cart.forEach(item => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        productsText += `• ${item.name} x${item.qty} = ${subtotal} CUP\n`;
+    });
+    
+    // 📝 Mensaje final
+    const message = `
+🛒 *NUEVO PEDIDO - EL PARAÍSO*
+
+👤 *Cliente*
+Nombre: ${name} ${lastname}
+Teléfono: ${phone1}
+CI: ${ci}
+
+🏠 *Dirección*
+${address}
+
+📦 *Productos*
+${productsText}
+
+💰 *Total:* ${total} CUP
+
+📞 Teléfono alternativo: ${phone2 || "N/A"}
+📍 Referencias: ${references || "N/A"}
+    `.trim();
+    
+    // 🌐 Abrir WhatsApp
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+}
+            
+
+            confirmCart() {
+                const total = this.getCartTotal();
+                if (total >= this.MIN_ORDER_AMOUNT) {
+                    this.closeCart();
+                    this.showSection('checkout');
+                }
+            }
+
+            // ============================================
+            // CHECKOUT Y ENVÍO A WHATSAPP
+            // ============================================
+            renderOrderSummary() {
+                const items = this.getCartItems();
+                const container = document.getElementById('summary-items');
+                const total = this.getCartTotal();
+
+                container.innerHTML = items.map(item => `
+                    <div class="summary-item">
+                        <span>${item.quantity}x ${item.name}</span>
+                        <span>${(item.price * item.quantity).toLocaleString()} CUP</span>
+                    </div>
+                `).join('');
+
+                document.getElementById('summary-total').textContent = `${total.toLocaleString()} CUP`;
+            }
+
+            validateForm() {
+                const name = document.getElementById('customer-name').value.trim();
+                const lastname = document.getElementById('customer-lastname').value.trim();
+                const phone = document.getElementById('customer-phone').value.trim();
+                const ci = document.getElementById('customer-ci').value.trim();
+                const address = document.getElementById('customer-address').value.trim();
+
+                const errors = [];
+
+                if (!name) errors.push('El nombre es obligatorio');
+                if (!lastname) errors.push('Los apellidos son obligatorios');
+                if (!phone) errors.push('El teléfono es obligatorio');
+                if (!ci) errors.push('El carnet de identidad es obligatorio');
+                if (!address) errors.push('La dirección es obligatoria');
+
+                // Validar formato de teléfono (cubano)
+                if (phone && !/^5\d{7}$/.test(phone.replace(/\s/g, ''))) {
+                    errors.push('El teléfono debe comenzar con 5 y tener 8 dígitos');
+                }
+
+                return errors;
+            }
+
+            sendOrder() {
+                const errors = this.validateForm();
+                
+                if (errors.length > 0) {
+                    errors.forEach(error => this.showToast(error, 'error'));
+                    return;
+                }
+
+                // Recopilar datos del cliente
+                const customerData = {
+                    name: document.getElementById('customer-name').value.trim(),
+                    lastname: document.getElementById('customer-lastname').value.trim(),
+                    phone: document.getElementById('customer-phone').value.trim(),
+                    ci: document.getElementById('customer-ci').value.trim(),
+                    address: document.getElementById('customer-address').value.trim(),
+                    phone2: document.getElementById('customer-phone2').value.trim(),
+                    references: document.getElementById('customer-references').value.trim()
+                };
+
+                // Generar mensaje
+                const message = this.generateWhatsAppMessage(customerData);
+                
+                // Codificar y crear enlace
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/${this.WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+                // Abrir WhatsApp
+                window.open(whatsappUrl, '_blank');
+
+                this.showToast('Redirigiendo a WhatsApp...', 'success');
+            }
+
+            generateWhatsAppMessage(customerData) {
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('es-CU');
+                const timeStr = now.toLocaleTimeString('es-CU', { hour: '2-digit', minute: '2-digit' });
+                
+                const items = this.getCartItems();
+                const total = this.getCartTotal();
+
+                let message = `🏪 *EL PARAÍSO - PEDIDO*\n`;
+                message += `📅 ${dateStr} ⏰ ${timeStr}\n`;
+                message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+                
+                message += `👤 *DATOS DEL CLIENTE*\n`;
+                message += `Nombre: ${customerData.name} ${customerData.lastname}\n`;
+                message += `CI: ${customerData.ci}\n`;
+                message += `Teléfono: ${customerData.phone}\n`;
+                if (customerData.phone2) {
+                    message += `Teléfono 2: ${customerData.phone2}\n`;
+                }
+                message += `Dirección: ${customerData.address}\n`;
+                if (customerData.references) {
+                    message += `Referencias: ${customerData.references}\n`;
+                }
+                message += `\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+                
+                message += `📦 *PRODUCTOS*\n`;
+                items.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    message += `${item.quantity}x ${item.name} = ${subtotal.toLocaleString()} CUP\n`;
+                });
+                message += `\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+                
+                message += `💰 *TOTAL A PAGAR: ${total.toLocaleString()} CUP*\n\n`;
+                message += `¡Gracias por su preferencia! 🙏`;
+
+                return message;
+            }
+
+
+
+
+            // ============================================
+            // UTILIDADES
+            // ============================================
+            showToast(message, type = 'success') {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.innerHTML = `
+                    <span>${type === 'success' ? '✓' : '✕'}</span>
+                    <span>${message}</span>
+                `;
+                
+                container.appendChild(toast);
+
+                // Eliminar después de la animación
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            }
+
+            setupEventListeners() {
+                // Búsqueda con Enter
+                document.getElementById('search-input').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.searchProducts();
+                    }
+                });
+
+                // Cerrar carrito con Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeCart();
+                    }
+                });
+            }
+        }
+        
+        // ============================================
+        // INICIALIZAR APLICACIÓN
+        // ============================================
+        const app = new ElParaisoApp();
+    </script>
+</body>
+</html>
